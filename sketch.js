@@ -76,7 +76,7 @@ function draw() {
   computerArcher.display()
 
  
- for (var i=0; i<playerArrows; i++) 
+ for (var i=0; i<playerArrows.length; i++) 
  {
  showArrows(i, playerArrows);
  }
@@ -97,8 +97,8 @@ function keyPressed() {
     var posY = playerArcher.body.position.y;
     var angle = playerArcher.body.angle;
     var arrow = new PlayerArrow(posX, posY, 100, 10);
-    arrow.trajectory = playerArcher.angle();
-    Matter.Body.setAngle(arrow.body);
+    arrow.trajectory = [];
+    Matter.Body.setAngle(arrow.body,angle);
     playerArrows.push(arrow);
   }
 }
@@ -112,7 +112,7 @@ function keyReleased () {
 
   if(keyCode === 32){
     //call shoot() function for each arrow in an array playerArrows
-    if (playerArrows.length) {
+    if (playerArrows.length > 0) {
       var angle = playerArcher.body.angle+PI/2;
       playerArrows[playerArrows.length - 1].shoot(angle);
     }
